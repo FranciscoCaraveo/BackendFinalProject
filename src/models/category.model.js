@@ -1,0 +1,20 @@
+import { DataTypes } from "sequelize";
+import sequelize from "../db.js";
+
+const Category = sequelize.define('Categories', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true
+    }
+}, {
+    tableName: 'categories',
+    timestamps: false
+});
+
+export default Category;

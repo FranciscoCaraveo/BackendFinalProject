@@ -1,0 +1,37 @@
+// ONLY NOTES!
+/** 
+ * 
+ * 
+ * Comandos instalados
+ * npm init -y
+ * npm i express, cors, mysql2, sequelize
+ * type es para avisar a la aplicacio que se utilizar por Modulos 
+ * Se utiliza el ".env" para guardar las variables de entorno, no se sube al repositorio.
+ * Se utiliza el "dotenv" para cargar las variables de entorno desde el archivo ".env" a la aplicacion.
+ * NodeJs es una forma en la que corra JavaScript
+ * La diferencia de Javascript, es que esta tiene Apis del navegador. (Ej.- console,log, alert, etc.)
+ * 
+ * "process" es un objeto global que contiene información sobre el proceso actual de Node.js.
+ * Se pone un shortCircuit para que no se repita el mismo código en caso de que no exista la variable de entorno.
+ * Las RestFul Api debed e permitir que todas las rutas tengan acceso a los metodos HTTP
+ * Las rutas se añaden a lo de "app use".
+ * 
+ *
+ * 
+ * 
+ *  ORM: Libreria o framework que permite interactuar con la base de datos de una manera mas sencilla y amigable, sin tener que escribir SQL directamente. Ejemplo: Sequelize, TypeORM, Mongoose, etc.
+ * UN modelo es una representacion de la base de datos, en este caso, la tabla.
+ *  Se crearan las tablas apartir de los modelos que uno crea.
+ * 
+ * 
+ **/
+
+/** 
+ *  API stuff
+ * fakestoreapiback <-- BD
+ * 
+ * Commands:
+ * URL: api/users/1
+ * 
+ * 
+ **/
