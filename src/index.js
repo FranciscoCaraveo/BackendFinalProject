@@ -2,6 +2,7 @@ import express from "express";
 import routerUsers from './routes/users.routes.js';
 import routerProducts from './routes/products.routes.js';
 import routerOrders from './routes/orders.router.js';
+import routerCategory from './routes/categories.router.js';
 import sequelize from "./db.js";
 import './models/Associations.js';
 
@@ -15,7 +16,7 @@ app.use(express.json());
 
 app.listen(port, () => console.log("Working! " + port));
 
-app.use('/api', routerUsers, routerProducts, routerOrders);
+app.use('/api', routerUsers, routerProducts, routerOrders, routerCategory);
 // app.use('/api', routerProducts);
 
 sequelize.sync({ force: false }) // Usar alter: true en producción
