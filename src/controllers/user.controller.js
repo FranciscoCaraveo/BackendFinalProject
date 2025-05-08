@@ -20,7 +20,7 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
     try {
         const { username, email } = req.body;
-        
+
         const newUser = await Users.create({
             username,
             email,
@@ -40,10 +40,11 @@ export const createUser = async (req, res) => {
     }
 }
 
+//Delete User
 export const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
-        
+
         if (!id) {
             return res.status(400).json({ message: "Favor de introducir ID" });
         }
@@ -63,14 +64,15 @@ export const deleteUser = async (req, res) => {
     }
 }
 
+//Update User
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
-        
+
         if (!id) {
             return res.status(400).json({ message: "Favor de introducir ID" });
         }
-        
+
         const { username, email } = req.body;
 
         const user = await Users.findByPk(id);

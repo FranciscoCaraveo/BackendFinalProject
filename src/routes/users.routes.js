@@ -9,13 +9,11 @@ router.get('/users/:id', idParamValidation, getUser);
 
 router.post('/users', createUserValidation, createUser);
 
-
 router.delete('/users', requireIdParam);
 router.delete('/users/:id', idParamValidation, deleteUser);
 
 router.patch('/users', requireIdParam); 
 router.patch('/users/:id', [...idParamValidation, ...updateUserValidation], updateUser);
-
 
 
 
