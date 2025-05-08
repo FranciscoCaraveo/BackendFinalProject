@@ -14,6 +14,7 @@ export const getCategory = async (req, res) => {
     res.json(category);
 }
 
+
 export const createCategory = async (req, res) => {
     const { name } = req.body;
     try {

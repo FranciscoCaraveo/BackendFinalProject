@@ -76,7 +76,7 @@ export const deleteOrder = async (req, res) => {
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({
-                message: "No puede cambiar ya que es otra llave foranea de otra tabla",
+                message: "No puede eliminar ya que es otra llave foranea de otra tabla",
                 details: "La categoría especificada no existe o está siendo utilizada por otra entidad."
             })
         }
