@@ -20,11 +20,7 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
     try {
         const { username, email } = req.body;
-
-        if (!username || !email) {
-            return res.status(404).send({ message: 'Username And Email are required' });
-        }
-
+        
         const newUser = await Users.create({
             username,
             email,
@@ -34,7 +30,7 @@ export const createUser = async (req, res) => {
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
-                message: "Username or email alredy exist my brother",
+                message: "Username or email already exist",
                 fields: error.errors.map(e => e.path)
             });
         }
@@ -44,31 +40,37 @@ export const createUser = async (req, res) => {
     }
 }
 
-//Delete User By Id
 export const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
+        
+        if (!id) {
+            return res.status(400).json({ message: "Favor de introducir ID" });
+        }
 
         const user = await Users.findByPk(id);
 
         if (!user) {
-            return res.status(400).send({ message: 'Users not found' });
+            return res.status(404).send({ message: 'Users not found' });
         }
-
 
         await user.destroy();
 
-        res.json({ message: 'User deleted sucessfully ' });
+        res.json({ message: 'User deleted successfully' });
     } catch (error) {
         console.error("Error deleting user: ", error);
         res.status(500).json({ message: "Failed to delete user", error: error.message });
     }
 }
 
-// Update user by ID
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
+        
+        if (!id) {
+            return res.status(400).json({ message: "Favor de introducir ID" });
+        }
+        
         const { username, email } = req.body;
 
         const user = await Users.findByPk(id);
@@ -76,7 +78,6 @@ export const updateUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
 
         await user.update({
             username: username || user.username,
