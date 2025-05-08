@@ -27,7 +27,7 @@ const Order = sequelize.define('Orders', {
         default: DataTypes.NOW
     },
 }, {
-    tableName: 'Orders',
+    tableName: 'orders',
     timestamps: false
 });
 

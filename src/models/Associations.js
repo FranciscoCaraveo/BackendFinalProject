@@ -2,9 +2,9 @@ import Categories from "./category.model.js";
 import User from "./user.model.js";
 import Products from "./products.model.js";
 import Orders from "./orders.model.js";
-import OrderDetail from "./user.model.js";
+import OrderDetail from "./ordersDetail.model.js";
 
-User.hasMany(Orders, { foreignKey: 'user_id' });
+User.hasMany(Orders, { foreignKey: 'user_id' }); 
 Orders.belongsTo(User, { foreignKey: 'user_id' });
 
 Categories.hasMany(Products, { foreignKey: 'category_id' });
@@ -19,8 +19,8 @@ Orders.belongsToMany(Products, {
 
 Products.belongsToMany(Orders, {
     through: OrderDetail,
-    foreignKey: 'order_id',
-    otherKey: 'product_id',
+    foreignKey: 'product_id',
+    otherKey:   'order_id',
     as: 'orders'
 });
 
