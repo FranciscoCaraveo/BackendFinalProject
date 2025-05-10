@@ -19,7 +19,7 @@ const Order = sequelize.define('Orders', {
         allowNull: false,
     },
     status: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     created_at: {

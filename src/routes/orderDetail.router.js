@@ -16,13 +16,15 @@ const router = Router();
 router.get('/orderDeta', getOrderDetails);
 router.get('/orderDeta/:id', getOrderDetail);
 
+
 router.post('/orderDeta', createOrderDetailValidation, createOrderDetail);
 
 router.delete('/orderDeta', requireOrderDetailParams)
-router.delete('/orderDeta/:id', orderDetailParamValidation, deleteOrderDetail);
+router.delete('/orderDeta/:id', deleteOrderDetail);
 
 router.patch('/orderDeta', requireOrderDetailParams);
-router.patch('/orderDeta/:id', updateOrderDetailValidation, validateRequiredFields, updateOrderDetail);
+router.patch('/orderDeta/:Id', updateOrderDetailValidation, validateRequiredFields(['quantity', 'price']), updateOrderDetail);
+// router.patch('/orderDeta/:id', updateOrderDetailValidation, validateRequiredFields, updateOrderDetail);
 
 
 export default router;

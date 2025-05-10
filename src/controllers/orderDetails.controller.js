@@ -25,7 +25,7 @@ export const createOrderDetail = async (req, res) => {
         const orderExists = await Order.findByPk(order_id);
         if (!orderExists) {
             return res.status(404).json({ 
-                message: "La orden especificada no existe"
+                message: "La orden especificada no existe en la tabla de órdenes"
             });
         }
         
@@ -33,7 +33,7 @@ export const createOrderDetail = async (req, res) => {
         const productExists = await Product.findByPk(product_id);
         if (!productExists) {
             return res.status(404).json({ 
-                message: "El producto especificado no existe" 
+                message: "El producto especificado no existe en la tabla de productos" 
             });
         }
         

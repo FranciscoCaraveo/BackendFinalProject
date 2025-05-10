@@ -1,4 +1,3 @@
-import { RunStepsPage } from 'openai/resources/beta/threads/runs/steps.mjs';
 import Products from '../models/products.model.js';
 import OrderDetail from '../models/ordersDetail.model.js';
 
@@ -13,7 +12,7 @@ export const getProduct = async (req, res) => {
     const { id } = req.params;
     const product = await Products.findByPk(id);
     if (!product) {
-        return res.status(400).send({ message: 'Product not found' });
+        return res.status(404).send({ message: 'Product not found' });
     }
     res.json(product);
 }
@@ -34,7 +33,7 @@ export const insertProduct = async (req, res) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 message: 'Product already exists',
-                fields: error.erros.map(e => e.path)
+                fields: error.errors.map(e => e.path)
             });
         }
 
@@ -51,13 +50,13 @@ export const deleteProduct = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ message: "Favor de introducir ID" });
+            return res.status(404).json({ meszsage: "Favor de introducir ID" });
         }
 
         const product = await Products.findByPk(id);
 
         if (!product) {
-            return res.status(400).send({ message: 'Product not found' });
+            return res.status(404).send({ message: 'Product not found' });
         }
 
         const orderDetails = await OrderDetail.findAll({
@@ -90,6 +89,14 @@ export const updateProduct = async (req, res) => {
             return res.status(400).json({ message: "Favor de introducir ID" });
         }
 
+      
+        if (!req.body || Object.keys(req.body).length === 0) {
+            return res.status(400).json({ 
+                message: "El cuerpo de la petición está vacío",
+                details: "Debe proporcionar al menos un campo para actualizar (title, price, category_id o stock)"
+            });
+        }
+
         const { title, price, category_id, stock } = req.body;
 
         const product = await Products.findByPk(id);
@@ -98,17 +105,18 @@ export const updateProduct = async (req, res) => {
             return res.status(404).json({ message: 'Product not found' });
         }
 
+       
         await product.update({
-            title: title || product.title,
-            price: price || product.price,
-            category_id: category_id || product.category_id,
-            stock: stock || product.stock
+            title: title ?? product.title,
+            price: price ?? product.price,
+            category_id: category_id ?? product.category_id,
+            stock: stock ?? product.stock
         });
 
         res.json({ message: 'Product updated successfully', product });
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
-            return res.status(400).json({
+            return res.status(404).json({
                 message: "No puede cambiar ya que es otra llave foranea de otra tabla",
                 details: "La categoría especificada no existe o está siendo utilizada por otra entidad."
             });
