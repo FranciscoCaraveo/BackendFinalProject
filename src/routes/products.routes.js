@@ -2,9 +2,6 @@ import { Router } from "express";
 import { getProducts, getProduct, insertProduct, updateProduct, deleteProduct } from "../controllers/products.controller.js";
 import { createProductValidation, idParamValidation, updateProductValidation, requireIdParam } from "../middlewares/products.validator.js";
 
-
-
-
 const router = Router();
 
 router.get('/products', getProducts);

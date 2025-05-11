@@ -70,8 +70,6 @@ export const createOrderDetail = async (req, res) => {
     }
 }
 
-
-
 // Update Order Detail (PATCH)
 export const updateOrderDetail = async (req, res) => {
     try {

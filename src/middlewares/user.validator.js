@@ -18,7 +18,6 @@ export const createUserValidation = [
     validateResults
 ];
 
-// Reglas de validación para actualizar usuario
 export const updateUserValidation = [
     check('username')
         .optional()
