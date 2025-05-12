@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { getOrderDetails, getOrderDetail, deleteOrderDetail, updateOrderDetail, createOrderDetail } from '../controllers/orderDetails.controller.js';
-import { createOrderDetailValidation, updateOrderDetailValidation, requireOrderDetailParams, validateRequiredFields, requireIdParam } from "../middlewares/ordersDatails.validator.js";
+import {
+    createOrderDetailValidation, updateOrderDetailValidation, requireOrderDetailParams, validateRequiredFields,
+
+} from "../middlewares/ordersDatails.validator.js";
 
 const router = Router();
 
