@@ -46,7 +46,7 @@ export const deleteUser = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ message: "Favor de introducir ID" });
+            return res.status(400).json({ message: "Please Provide an  ID" });
         }
 
         const user = await Users.findByPk(id);
@@ -70,14 +70,14 @@ export const updateUser = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ message: "Favor de introducir ID" });
+            return res.status(400).json({ message: "Please provide an ID" });
         }
 
         // Validación del body
         if (!req.body || Object.keys(req.body).length === 0) {
             return res.status(400).json({ 
-                message: "El cuerpo de la petición está vacío",
-                details: "Debe proporcionar al menos un campo para actualizar (username o email)"
+                message: "The request body is empty",
+                details: "You must provide at least one field to update (username or email)"
             });
         }
 
@@ -86,8 +86,8 @@ export const updateUser = async (req, res) => {
         // Validación de campos específicos
         if (!username && !email) {
             return res.status(400).json({
-                message: "Datos de actualización inválidos",
-                details: "Debe proporcionar al menos username o email para actualizar"
+                message: "Invalid update data",
+                details: "You must provide at least username or email to update"
             });
         }
 

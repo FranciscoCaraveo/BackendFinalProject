@@ -40,7 +40,7 @@ export const deleteCategory = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ message: "Favor de introducir ID" });
+            return res.status(400).json({ message: "Please provide ID" });
         }
 
         const category = await Category.findByPk(id);
@@ -63,7 +63,7 @@ export const updateCategory = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ message: "Favor de introducir ID" });
+            return res.status(400).json({ message: "Please provide an ID" });
         }
 
         const { name } = req.body;
