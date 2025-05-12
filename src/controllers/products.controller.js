@@ -50,7 +50,7 @@ export const deleteProduct = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(404).json({ meszsage: "Favor de introducir ID" });
+            return res.status(404).json({ meszsage: "Please provide an ID" });
         }
 
         const product = await Products.findByPk(id);
@@ -86,14 +86,14 @@ export const updateProduct = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return res.status(400).json({ message: "Favor de introducir ID" });
+            return res.status(400).json({ message: "Please provide an ID" });
         }
 
       
         if (!req.body || Object.keys(req.body).length === 0) {
             return res.status(400).json({ 
-                message: "El cuerpo de la petición está vacío",
-                details: "Debe proporcionar al menos un campo para actualizar (title, price, category_id o stock)"
+                message: "The request body is empty",
+                details: "You must provide at least one field to update (title, price, category_id, or stock)"
             });
         }
 
@@ -117,8 +117,8 @@ export const updateProduct = async (req, res) => {
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(404).json({
-                message: "No puede cambiar ya que es otra llave foranea de otra tabla",
-                details: "La categoría especificada no existe o está siendo utilizada por otra entidad."
+                message: "Cannot update because it is a foreign key in another table",
+                details: "The specified category does not exist or is being used by another entity."
             });
         }
         console.error("Error updating product:", error);

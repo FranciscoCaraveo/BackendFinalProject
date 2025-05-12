@@ -25,7 +25,7 @@ export const createOrderDetail = async (req, res) => {
         const orderExists = await Order.findByPk(order_id);
         if (!orderExists) {
             return res.status(404).json({ 
-                message: "La orden especificada no existe en la tabla de órdenes"
+                message: "The specified order does not exist in the 'orders' table"
             });
         }
         
@@ -33,7 +33,7 @@ export const createOrderDetail = async (req, res) => {
         const productExists = await Product.findByPk(product_id);
         if (!productExists) {
             return res.status(404).json({ 
-                message: "El producto especificado no existe en la tabla de productos" 
+                message: "The Specific product does not exist in the 'products' table" 
             });
         }
         
@@ -47,7 +47,7 @@ export const createOrderDetail = async (req, res) => {
         
         if (existingDetail) {
             return res.status(400).json({ 
-                message: "Este producto ya existe en esta orden", 
+                message: "This product already exists in this order", 
                 orderDetail: existingDetail 
             });
         }
@@ -123,8 +123,8 @@ export const deleteOrderDetail = async (req, res) => {
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({
-                message: "No puede cambiar ya que es otra llave foranea de otra tabla",
-                details: "La categoría especificada no existe o está siendo utilizada por otra entidad."
+                message: "Cannot delete because it is a foreign key in another table",
+                details: "The specified category does not exist or is being used by another entity."
             })
         }
         console.error("Error deleting order:", error);
